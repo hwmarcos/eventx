@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from eventx.subcriptions.forms import SubscriptionForm
+from eventx.subcriptions.models import Subscription
+
 
 def subscribe(request):
     if request.method == 'POST':
@@ -19,6 +21,7 @@ def create(request):
         return render(request, 'subscriptions/subscription_form.html', {'form': form})
 
     #Send Email
+    '''
     template_name = 'subscriptions/subscription_email.txt'
     context = form.cleaned_data
     subject = 'Confirmação de inscrição'
@@ -26,6 +29,9 @@ def create(request):
     from_ = settings.DEFAULT_FROM_EMAIL
     to = form.cleaned_data['email']
     _send_mail(subject, from_, to, template_name, context)
+    '''
+
+    Subscription.objects.create(**form.cleaned_data)
 
     #Success Feedback
     messages.success(request, 'Inscrição realizada com sucesso!')
