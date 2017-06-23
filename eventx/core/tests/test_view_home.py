@@ -18,14 +18,12 @@ class HomeTest(TestCase):
         self.assertContains(self.response, expected)
 
     def test_speakers(self):
-
         contents = [
             'Grace Hopper',
             'http://hbn.link/hopper-pic',
             'Alan Turing',
             'http://hbn.link/turing-pic'
         ]
-
         for expected in contents:
             with self.subTest():
                 self.assertContains(self.response, expected)
