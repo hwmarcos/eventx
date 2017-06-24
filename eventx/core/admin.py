@@ -1,8 +1,17 @@
 from django.contrib import admin
 
-from eventx.core.models import Speaker
+from eventx.core.models import Speaker, Contact
+
+
+class ContactInline(admin.TabularInline):
+    model = Contact
+    extra = 1
+
 
 class SpeakerModelAdmin(admin.ModelAdmin):
+
+    inlines = [ContactInline]
+
     prepopulated_fields = {
         'slug': ('name',)
     }
