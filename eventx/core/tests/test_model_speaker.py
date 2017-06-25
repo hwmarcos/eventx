@@ -5,6 +5,7 @@ from django.shortcuts import resolve_url as r
 class SpeakerModelTest(TestCase):
 
     def setUp(self):
+
         self.speaker = Speaker.objects.create(
             name='Grace Hopper',
             slug='grace-hopper',

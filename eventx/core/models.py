@@ -1,6 +1,9 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
 
+from eventx.core.managers import KindQuerySet, PeriodManager
+
+
 class Speaker(models.Model):
     name = models.CharField('Nome', max_length=255)
     slug = models.SlugField('Slug')
@@ -32,6 +35,8 @@ class Contact(models.Model):
     kind = models.CharField('tipo', max_length=1, choices=KINDS)
     value = models.CharField('valor', max_length=255)
 
+    objects = KindQuerySet.as_manager()
+
     def __str__(self):
         return self.value
 
@@ -45,6 +50,8 @@ class Talk(models.Model):
     start = models.TimeField('Inicio', blank=True, null=True)
     description = models.TextField('Descrição', blank=True)
     speakers = models.ManyToManyField('Speaker', verbose_name='Palestrantes', blank=True)
+
+    objects = PeriodManager()
 
     def __str__(self):
         return self.title

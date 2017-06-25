@@ -9,7 +9,6 @@ class TalkListTest(TestCase):
     def setUp(self):
 
         t1 = Talk.objects.create(title='Título da Palestra', start='10:00', description='Descrição da palestra')
-
         t2 = Talk.objects.create(title='Título da Palestra', start='13:00', description='Descrição da palestra')
 
         speaker = Speaker.objects.create(

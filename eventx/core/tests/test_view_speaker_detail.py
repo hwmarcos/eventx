@@ -31,7 +31,6 @@ class testSpeakerDetail(TestCase):
             with self.subTest():
                 self.assertContains(self.resp, expected)
 
-
     def test_contect(self):
         speaker = self.resp.context['speaker']
         self.assertIsInstance(speaker, Speaker)
