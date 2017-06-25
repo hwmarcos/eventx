@@ -38,3 +38,17 @@ class Contact(models.Model):
     class Meta:
         verbose_name = 'Contato'
         verbose_name_plural = 'Contatos'
+
+
+class Talk(models.Model):
+    title = models.CharField('Título', max_length=100)
+    start = models.TimeField('Inicio', blank=True, null=True)
+    description = models.TextField('Descrição', blank=True)
+    speakers = models.ManyToManyField('Speaker', verbose_name='Palestrantes', blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Palestra'
+        verbose_name_plural = 'Palestras'
